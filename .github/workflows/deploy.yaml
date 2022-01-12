@@ -18,13 +18,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install oc
+      - name: OpenShift - Install
         uses: redhat-actions/oc-installer@v1
         with:
           oc_version: '4.6' 
           
-      - name: Login oc
+      - name: OpenShift - Login
         run: oc login --token=$OPENSHIFT_TOKEN --server=$OPENSHIFT_SERVER_URL
+        
+      - name: OpenShift - Select project
+        run: oc project wmirandamba-dev
 
       - name: create database secrets
         run: |
