@@ -37,8 +37,8 @@ jobs:
           --from-literal=database-password=$DATABASE_PASSWORD \
           --from-literal=database-user=$DATABASE_USER
 
-      # - name: deploy database
-      #   run: oc get svc/fiap-mba-db 2> /dev/null && echo "database already exists!" || oc apply -k resources/database
+      - name: deploy database
+        run: oc get svc/fiap-mba-db 2> /dev/null && echo "database already exists!" || oc apply -k resources/database
 
       # - uses: actions/setup-node@v2
       #   with:
