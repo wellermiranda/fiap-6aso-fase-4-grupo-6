@@ -162,11 +162,11 @@ spec:
           terminationMessagePolicy: File
           imagePullPolicy: Always
           env:
-            - name: AUTHORS
-              valueFrom:
-                configMapKeyRef:
-                  name: authors
-                  key: rms
+            # - name: STUDENTS
+            #   valueFrom:
+            #     configMapKeyRef:
+            #       name: students
+            #       key: rms
             - name: MONGODB_USER
               valueFrom:
                 secretKeyRef:

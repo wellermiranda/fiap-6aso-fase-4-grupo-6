@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
   res.json({
     school: 'FIAP',
     course: 'MBA - Arquitetura de soluções',
-    students: process.env.AUTHORS || 'unknown'
+    students: process.env.STUDENTS || 'unknown'
   });
 })
 
