@@ -1,0 +1,60 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: fiap-mba-db
+  namespace: wmirandamba-dev
+  uid: baf2fb15-57a3-492f-8604-4322786a0114
+  resourceVersion: '530148789'
+  creationTimestamp: '2022-01-12T00:07:24Z'
+  labels:
+    template: mongodb-persistent-template
+    template.openshift.io/template-instance-owner: 55871031-0a0d-4179-8afe-3e777353b10f
+  annotations:
+    template.openshift.io/expose-uri: 'mongodb://{.spec.clusterIP}:{.spec.ports[?(.name=="mongo")].port}'
+  managedFields:
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2022-01-12T00:07:24Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:template.openshift.io/expose-uri': {}
+          'f:labels':
+            .: {}
+            'f:template': {}
+            'f:template.openshift.io/template-instance-owner': {}
+        'f:spec':
+          'f:internalTrafficPolicy': {}
+          'f:ports':
+            .: {}
+            'k:{"port":27017,"protocol":"TCP"}':
+              .: {}
+              'f:name': {}
+              'f:port': {}
+              'f:protocol': {}
+              'f:targetPort': {}
+          'f:selector': {}
+          'f:sessionAffinity': {}
+          'f:type': {}
+spec:
+  clusterIP: 172.30.250.108
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: mongo
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
+  internalTrafficPolicy: Cluster
+  clusterIPs:
+    - 172.30.250.108
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    name: fiap-mba-db
+status:
+  loadBalancer: {}

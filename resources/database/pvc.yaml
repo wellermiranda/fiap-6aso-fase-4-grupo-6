@@ -1,0 +1,42 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: fiap-mba-db
+  namespace: wmirandamba-dev
+  uid: b223ef0c-ae1d-411f-9494-8f11dfc0fb7a
+  resourceVersion: '530148791'
+  creationTimestamp: '2022-01-12T00:07:24Z'
+  labels:
+    template: mongodb-persistent-template
+    template.openshift.io/template-instance-owner: 55871031-0a0d-4179-8afe-3e777353b10f
+  finalizers:
+    - kubernetes.io/pvc-protection
+  managedFields:
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2022-01-12T00:07:24Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:template': {}
+            'f:template.openshift.io/template-instance-owner': {}
+        'f:spec':
+          'f:accessModes': {}
+          'f:resources':
+            'f:requests':
+              .: {}
+              'f:storage': {}
+          'f:volumeMode': {}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: gp2
+  volumeMode: Filesystem
+status:
+  phase: Pending

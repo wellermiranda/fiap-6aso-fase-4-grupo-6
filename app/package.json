@@ -1,0 +1,20 @@
+{
+  "name": "fase-4-arquitetura-de-solucoes",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wellermiranda/fase-4-arquitetura-de-solucoes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wellermiranda/fase-4-arquitetura-de-solucoes/issues"
+  },
+  "homepage": "https://github.com/wellermiranda/fase-4-arquitetura-de-solucoes#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}

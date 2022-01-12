@@ -1,0 +1,41 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    env:
+      OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
+      OPENSHIFT_SERVER_URL: ${{ secrets.OPENSHIFT_SERVER_URL }}
+      DATABASE_ADMIN_PASSWORD: ${{ secrets.DATABASE_ADMIN_PASSWORD }}
+      DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+      DATABASE_USER: ${{ secrets.DATABASE_USER }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: create database secrets
+        run: oc get secret/fiap-mba-db 2> /dev/null && echo "database secrets already exists!" || oc create secret generic fiap-mba-db \
+        --from-literal=database-admin-password=$DATABASE_ADMIN_PASSWORD \
+        --from-literal=database-name=$DATABASE_NAME \
+        --from-literal=database-password=$DATABASE_PASSWORD \
+        --from-literal=database-user=$DATABASE_USER
+
+      # - name: deploy database
+      #   run: oc get svc/fiap-mba-db 2> /dev/null && echo "database already exists!" || oc apply -k resources/database
+
+      # - uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '16'
+
+      # - name: install packages
+      #   run: npm install
+
+      # - name: deploy server
+      #   run: echo "server"
+
+      
