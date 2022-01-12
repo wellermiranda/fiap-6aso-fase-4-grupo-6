@@ -18,6 +18,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install oc
+        uses: redhat-actions/oc-installer@v1
+        with:
+          oc_version: '4.8.3' 
+
       - name: create database secrets
         run: |
           oc get secret/fiap-mba-db 2> /dev/null && echo "database secrets already exists!" || oc create secret generic fiap-mba-db \
