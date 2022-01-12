@@ -1,0 +1,67 @@
+kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v2beta2
+metadata:
+  name: fiap-mba-app
+  namespace: wmirandamba-dev
+  uid: 96ccb87c-d59b-42ae-a8fd-d543b737c308
+  resourceVersion: '533644657'
+  creationTimestamp: '2022-01-12T22:03:26Z'
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: autoscaling/v2beta2
+      time: '2022-01-12T22:03:26Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:maxReplicas': {}
+          'f:metrics': {}
+          'f:minReplicas': {}
+          'f:scaleTargetRef':
+            'f:apiVersion': {}
+            'f:kind': {}
+            'f:name': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: autoscaling/v1
+      time: '2022-01-12T22:03:41Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:autoscaling.alpha.kubernetes.io/conditions': {}
+        'f:status':
+          'f:currentReplicas': {}
+      subresource: status
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: fiap-6aso-grupo-6
+    apiVersion: apps/v1
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 65
+status:
+  currentReplicas: 1
+  desiredReplicas: 0
+  currentMetrics: null
+  conditions:
+    - type: AbleToScale
+      status: 'True'
+      lastTransitionTime: '2022-01-12T22:03:41Z'
+      reason: SucceededGetScale
+      message: the HPA controller was able to get the target's current scale
+    - type: ScalingActive
+      status: 'False'
+      lastTransitionTime: '2022-01-12T22:03:41Z'
+      reason: FailedGetResourceMetric
+      message: >-
+        the HPA was unable to compute the replica count: failed to get cpu
+        utilization: did not receive metrics for any ready pods
