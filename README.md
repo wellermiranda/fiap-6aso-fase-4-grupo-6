@@ -5,4 +5,4 @@
 
 # Deploy
 
-O deploy dos recursos e da aplicação são feitos através do [workflow deploy](.github/workflows/deploy/yaml). 
+O deploy dos recursos e da aplicação são feitos através do [workflow deploy](.github/workflows/deploy.yaml). 
