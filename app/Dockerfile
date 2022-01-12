@@ -1,9 +1,11 @@
 FROM node:16-alpine3.13
 
+LABEL author="Group 6 - rm340703 | rmVINI"
+
 EXPOSE 3000/tcp
 
 WORKDIR /app
 
-COPY app/ .
+COPY . .
 
 CMD npm run start
