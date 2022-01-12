@@ -19,11 +19,12 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: create database secrets
-        run: oc get secret/fiap-mba-db 2> /dev/null && echo "database secrets already exists!" || oc create secret generic fiap-mba-db \
-        --from-literal=database-admin-password=$DATABASE_ADMIN_PASSWORD \
-        --from-literal=database-name=$DATABASE_NAME \
-        --from-literal=database-password=$DATABASE_PASSWORD \
-        --from-literal=database-user=$DATABASE_USER
+        run: |
+          oc get secret/fiap-mba-db 2> /dev/null && echo "database secrets already exists!" || oc create secret generic fiap-mba-db \
+          --from-literal=database-admin-password=$DATABASE_ADMIN_PASSWORD \
+          --from-literal=database-name=$DATABASE_NAME \
+          --from-literal=database-password=$DATABASE_PASSWORD \
+          --from-literal=database-user=$DATABASE_USER
 
       # - name: deploy database
       #   run: oc get svc/fiap-mba-db 2> /dev/null && echo "database already exists!" || oc apply -k resources/database
