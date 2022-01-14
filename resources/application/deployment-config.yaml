@@ -199,8 +199,8 @@ spec:
             - name: STUDENTS
               valueFrom:
                 configMapKeyRef:
-                  name: students
-                  key: rms
+                  name: application-config
+                  key: students
             - name: MONGODB_USER
               valueFrom:
                 secretKeyRef:
