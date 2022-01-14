@@ -4,7 +4,7 @@ const port = 3000
 
 app.get('/', (req, res) => {
   res.json({
-    school: 'Fiap',
+    school: 'FIAP',
     course: 'MBA - Arquitetura de soluções',
     students: process.env.STUDENTS || 'unknown'
   });
