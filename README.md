@@ -18,4 +18,4 @@ O deploy dos recursos são feitos manualmente através do [workflow deploy-resou
 
 ## Application
 
-O deploy de uma nova versão da aplicação é feito através do [workflow deploy-app](.github/workflows/deploy-resources.yaml) que disparado pelo push na main desse repositório. 
+O deploy de uma nova versão da aplicação é feito através do [workflow deploy-app](.github/workflows/deploy-app.yaml) que disparado pelo push na main desse repositório. 
