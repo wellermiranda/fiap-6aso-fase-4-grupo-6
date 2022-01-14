@@ -1,16 +1,66 @@
 kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
-  name: fiap-mba-app
-  namespace: wmirandamba-dev
-  uid: 5b34afb9-68e2-46c1-83de-cf9133a6aee5
-  resourceVersion: '537552866'
-  generation: 3
-  creationTimestamp: '2022-01-13T22:55:53Z'
-  labels:
-    app: fiap-mba-app
   annotations:
-    openshift.io/image.dockerRepositoryCheck: '2022-01-13T23:04:53Z'
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"image.openshift.io/v1","kind":"ImageStream","metadata":{"annotations":{"openshift.io/image.dockerRepositoryCheck":"2022-01-13T23:04:53Z"},"creationTimestamp":"2022-01-13T22:55:53Z","generation":3,"labels":{"app":"fiap-mba-app"},"name":"fiap-mba-app","namespace":"wmirandamba-dev","resourceVersion":"537552866","uid":"5b34afb9-68e2-46c1-83de-cf9133a6aee5"},"spec":{"lookupPolicy":{"local":false},"tags":[{"annotations":null,"from":{"kind":"DockerImage","name":"image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-mba-app"},"generation":3,"importPolicy":{},"name":"latest","referencePolicy":{"type":"Source"}}]},"status":{"dockerImageRepository":"image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-mba-app","publicDockerImageRepository":"default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/wmirandamba-dev/fiap-mba-app","tags":[{"conditions":[{"generation":3,"lastTransitionTime":"2022-01-13T23:04:53Z","message":"dockerimage.image.openshift.io
+      \"image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-mba-app:latest\"
+      not
+      found","reason":"NotFound","status":"False","type":"ImportSuccess"}],"items":null,"tag":"latest"}]}}
+    openshift.io/image.dockerRepositoryCheck: '2022-01-13T23:39:35Z'
+  resourceVersion: '537751068'
+  name: fiap-mba-app
+  uid: 7e85b0c9-f073-4c2b-bbda-7a4723331f86
+  creationTimestamp: '2022-01-13T23:39:35Z'
+  generation: 2
+  managedFields:
+    - manager: kubectl-client-side-apply
+      operation: Update
+      apiVersion: image.openshift.io/v1
+      time: '2022-01-13T23:39:35Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+            'f:openshift.io/image.dockerRepositoryCheck': {}
+        'f:spec':
+          'f:tags':
+            .: {}
+            'k:{"name":"latest"}':
+              .: {}
+              'f:annotations': {}
+              'f:from': {}
+              'f:generation': {}
+              'f:importPolicy': {}
+              'f:name': {}
+              'f:referencePolicy':
+                .: {}
+                'f:type': {}
+        'f:status':
+          'f:dockerImageRepository': {}
+          'f:publicDockerImageRepository': {}
+          'f:tags':
+            .: {}
+            'k:{"tag":"latest"}':
+              .: {}
+              'f:conditions': {}
+              'f:items': {}
+              'f:tag': {}
+    - manager: Mozilla
+      operation: Update
+      apiVersion: image.openshift.io/v1
+      time: '2022-01-14T00:21:25Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+  namespace: wmirandamba-dev
+  labels:
+    app: fiap-mba-image-stream
 spec:
   lookupPolicy:
     local: false
@@ -21,7 +71,7 @@ spec:
         kind: DockerImage
         name: >-
           image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-mba-app
-      generation: 3
+      generation: 2
       importPolicy: {}
       referencePolicy:
         type: Source
@@ -32,14 +82,28 @@ status:
     default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/wmirandamba-dev/fiap-mba-app
   tags:
     - tag: latest
-      items: null
-      conditions:
-        - type: ImportSuccess
-          status: 'False'
-          lastTransitionTime: '2022-01-13T23:04:53Z'
-          reason: NotFound
-          message: >-
-            dockerimage.image.openshift.io
-            "image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-mba-app:latest"
-            not found
-          generation: 3
+      items:
+        - created: '2022-01-14T00:02:28Z'
+          dockerImageReference: >-
+            image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-mba-app@sha256:a72384a2413304fb8abe2ad9f8e178b9d23291dd124e2191bfad654ee53c2b74
+          image: >-
+            sha256:a72384a2413304fb8abe2ad9f8e178b9d23291dd124e2191bfad654ee53c2b74
+          generation: 2
+        - created: '2022-01-13T23:58:54Z'
+          dockerImageReference: >-
+            image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-mba-app@sha256:dc82591dd281dca65764ec6db2cd31b0f8c6c70870ff006bd597dc8053be47b7
+          image: >-
+            sha256:dc82591dd281dca65764ec6db2cd31b0f8c6c70870ff006bd597dc8053be47b7
+          generation: 2
+        - created: '2022-01-13T23:47:43Z'
+          dockerImageReference: >-
+            image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-mba-app@sha256:a72384a2413304fb8abe2ad9f8e178b9d23291dd124e2191bfad654ee53c2b74
+          image: >-
+            sha256:a72384a2413304fb8abe2ad9f8e178b9d23291dd124e2191bfad654ee53c2b74
+          generation: 2
+        - created: '2022-01-13T23:39:52Z'
+          dockerImageReference: >-
+            image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-mba-app@sha256:dc82591dd281dca65764ec6db2cd31b0f8c6c70870ff006bd597dc8053be47b7
+          image: >-
+            sha256:dc82591dd281dca65764ec6db2cd31b0f8c6c70870ff006bd597dc8053be47b7
+          generation: 2
