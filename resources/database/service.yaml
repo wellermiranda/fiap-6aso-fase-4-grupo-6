@@ -7,6 +7,7 @@ metadata:
   resourceVersion: '530148789'
   creationTimestamp: '2022-01-12T00:07:24Z'
   labels:
+    app: fiap-mba-db
     template: mongodb-persistent-template
     template.openshift.io/template-instance-owner: 55871031-0a0d-4179-8afe-3e777353b10f
   annotations:
