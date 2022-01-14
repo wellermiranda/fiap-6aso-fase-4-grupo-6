@@ -8,6 +8,7 @@ app.get('/', (req, res) => {
     course: {
       type: 'MBA',
       name: 'Arquitetura de soluções',
+      year: '2021'
     },
     students: process.env.STUDENTS || 'unknown'
   });
