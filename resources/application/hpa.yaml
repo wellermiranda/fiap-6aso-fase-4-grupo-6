@@ -1,12 +1,67 @@
-apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v2beta2
 metadata:
   name: fiap-mba-app
+  namespace: wmirandamba-dev
+  uid: 04abd5cf-b427-4295-a365-87ef9dc69b1a
+  resourceVersion: '537830098'
+  creationTimestamp: '2022-01-14T00:41:21Z'
+  labels:
+    app: fiap-mba-app
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"autoscaling/v2beta2","kind":"HorizontalPodAutoscaler","metadata":{"annotations":{},"name":"fiap-mba-app","namespace":"wmirandamba-dev"},"spec":{"maxReplicas":4,"metrics":[{"resource":{"name":"cpu","target":{"averageUtilization":75,"type":"Utilization"}},"type":"Resource"}],"minReplicas":1,"scaleTargetRef":{"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","name":"fiap-mba-app"}}}
+  managedFields:
+    - manager: kubectl-client-side-apply
+      operation: Update
+      apiVersion: autoscaling/v2beta2
+      time: '2022-01-14T00:41:21Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+        'f:spec':
+          'f:maxReplicas': {}
+          'f:metrics': {}
+          'f:scaleTargetRef':
+            'f:apiVersion': {}
+            'f:kind': {}
+            'f:name': {}
+    - manager: Mozilla
+      operation: Update
+      apiVersion: autoscaling/v2beta2
+      time: '2022-01-14T00:47:46Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+        'f:spec':
+          'f:minReplicas': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: autoscaling/v1
+      time: '2022-01-14T00:48:06Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:autoscaling.alpha.kubernetes.io/conditions': {}
+            'f:autoscaling.alpha.kubernetes.io/current-metrics': {}
+        'f:status':
+          'f:currentCPUUtilizationPercentage': {}
+          'f:currentReplicas': {}
+          'f:desiredReplicas': {}
+          'f:lastScaleTime': {}
+      subresource: status
 spec:
   scaleTargetRef:
-    apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     name: fiap-mba-app
+    apiVersion: apps.openshift.io/v1
   minReplicas: 1
   maxReplicas: 4
   metrics:
@@ -14,5 +69,34 @@ spec:
       resource:
         name: cpu
         target:
-          averageUtilization: 75
           type: Utilization
+          averageUtilization: 75
+status:
+  lastScaleTime: '2022-01-14T00:47:51Z'
+  currentReplicas: 2
+  desiredReplicas: 2
+  currentMetrics:
+    - type: Resource
+      resource:
+        name: cpu
+        current:
+          averageValue: '0'
+          averageUtilization: 0
+  conditions:
+    - type: AbleToScale
+      status: 'True'
+      lastTransitionTime: '2022-01-14T00:41:36Z'
+      reason: ReadyForNewScale
+      message: recommended size matches current size
+    - type: ScalingActive
+      status: 'True'
+      lastTransitionTime: '2022-01-14T00:46:36Z'
+      reason: ValidMetricFound
+      message: >-
+        the HPA was able to successfully calculate a replica count from cpu
+        resource utilization (percentage of request)
+    - type: ScalingLimited
+      status: 'True'
+      lastTransitionTime: '2022-01-14T00:46:36Z'
+      reason: TooFewReplicas
+      message: the desired replica count is less than the minimum replica count
