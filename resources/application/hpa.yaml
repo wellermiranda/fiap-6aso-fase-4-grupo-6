@@ -3,16 +3,25 @@ apiVersion: autoscaling/v2beta2
 metadata:
   name: fiap-mba-app
   namespace: wmirandamba-dev
-  uid: 96ccb87c-d59b-42ae-a8fd-d543b737c308
-  resourceVersion: '533644657'
-  creationTimestamp: '2022-01-12T22:03:26Z'
+  uid: f276634b-dce1-4acc-9abe-cc7ab10d5e44
+  resourceVersion: '537699021'
+  creationTimestamp: '2022-01-13T23:36:35Z'
+  labels:
+    app: fiap-mba-app
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"autoscaling/v2beta2","kind":"HorizontalPodAutoscaler","metadata":{"annotations":{},"name":"fiap-mba-app","namespace":"wmirandamba-dev"},"spec":{"maxReplicas":4,"metrics":[{"resource":{"name":"cpu","target":{"averageUtilization":75,"type":"Utilization"}},"type":"Resource"}],"minReplicas":1,"scaleTargetRef":{"apiVersion":"apps/v1","kind":"Deployment","name":"fiap-mba-app"}}}
   managedFields:
-    - manager: Mozilla
+    - manager: kubectl-client-side-apply
       operation: Update
       apiVersion: autoscaling/v2beta2
-      time: '2022-01-12T22:03:26Z'
+      time: '2022-01-13T23:36:35Z'
       fieldsType: FieldsV1
       fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
         'f:spec':
           'f:maxReplicas': {}
           'f:metrics': {}
@@ -24,43 +33,54 @@ metadata:
     - manager: kube-controller-manager
       operation: Update
       apiVersion: autoscaling/v1
-      time: '2022-01-12T22:03:41Z'
+      time: '2022-01-13T23:36:50Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
           'f:annotations':
-            .: {}
             'f:autoscaling.alpha.kubernetes.io/conditions': {}
         'f:status':
           'f:currentReplicas': {}
       subresource: status
+    - manager: Mozilla
+      operation: Update
+      apiVersion: autoscaling/v2beta2
+      time: '2022-01-14T00:01:15Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
 spec:
   scaleTargetRef:
     kind: Deployment
-    name: fiap-6aso-grupo-6
+    name: fiap-mba-app
     apiVersion: apps/v1
   minReplicas: 1
-  maxReplicas: 3
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 65
+          averageUtilization: 75
 status:
   currentReplicas: 1
   desiredReplicas: 0
   currentMetrics: null
   conditions:
     - type: AbleToScale
-      status: 'True'
-      lastTransitionTime: '2022-01-12T22:03:41Z'
-      reason: SucceededGetScale
-      message: the HPA controller was able to get the target's current scale
+      status: 'False'
+      lastTransitionTime: '2022-01-13T23:56:21Z'
+      reason: FailedGetScale
+      message: >-
+        the HPA controller was unable to get the target's current scale:
+        deployments/scale.apps "fiap-mba-app" not found
     - type: ScalingActive
       status: 'False'
-      lastTransitionTime: '2022-01-12T22:03:41Z'
+      lastTransitionTime: '2022-01-13T23:36:50Z'
       reason: FailedGetResourceMetric
       message: >-
         the HPA was unable to compute the replica count: failed to get cpu

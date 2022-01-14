@@ -2,22 +2,30 @@ kind: DeploymentConfig
 apiVersion: apps.openshift.io/v1
 metadata:
   annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{"template.alpha.openshift.io/wait-for-ready":"true"},"creationTimestamp":"2022-01-12T00:07:24Z","generation":1,"labels":{"template":"mongodb-persistent-template","template.openshift.io/template-instance-owner":"55871031-0a0d-4179-8afe-3e777353b10f"},"managedFields":[{"apiVersion":"apps.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:template.alpha.openshift.io/wait-for-ready":{}},"f:labels":{".":{},"f:template":{},"f:template.openshift.io/template-instance-owner":{}}},"f:spec":{"f:replicas":{},"f:selector":{".":{},"f:name":{}},"f:strategy":{"f:activeDeadlineSeconds":{},"f:recreateParams":{".":{},"f:timeoutSeconds":{}},"f:type":{}},"f:template":{".":{},"f:metadata":{".":{},"f:creationTimestamp":{},"f:labels":{".":{},"f:name":{}}},"f:spec":{".":{},"f:containers":{".":{},"k:{\"name\":\"mongodb\"}":{".":{},"f:env":{".":{},"k:{\"name\":\"MONGODB_ADMIN_PASSWORD\"}":{".":{},"f:name":{},"f:valueFrom":{".":{},"f:secretKeyRef":{}}},"k:{\"name\":\"MONGODB_DATABASE\"}":{".":{},"f:name":{},"f:valueFrom":{".":{},"f:secretKeyRef":{}}},"k:{\"name\":\"MONGODB_PASSWORD\"}":{".":{},"f:name":{},"f:valueFrom":{".":{},"f:secretKeyRef":{}}},"k:{\"name\":\"MONGODB_USER\"}":{".":{},"f:name":{},"f:valueFrom":{".":{},"f:secretKeyRef":{}}}},"f:image":{},"f:imagePullPolicy":{},"f:livenessProbe":{".":{},"f:failureThreshold":{},"f:initialDelaySeconds":{},"f:periodSeconds":{},"f:successThreshold":{},"f:tcpSocket":{".":{},"f:port":{}},"f:timeoutSeconds":{}},"f:name":{},"f:ports":{".":{},"k:{\"containerPort\":27017,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:protocol":{}}},"f:readinessProbe":{".":{},"f:exec":{".":{},"f:command":{}},"f:failureThreshold":{},"f:initialDelaySeconds":{},"f:periodSeconds":{},"f:successThreshold":{},"f:timeoutSeconds":{}},"f:resources":{".":{},"f:limits":{".":{},"f:memory":{}}},"f:securityContext":{".":{},"f:capabilities":{},"f:privileged":{}},"f:terminationMessagePath":{},"f:terminationMessagePolicy":{},"f:volumeMounts":{".":{},"k:{\"mountPath\":\"/var/lib/mongodb/data\"}":{".":{},"f:mountPath":{},"f:name":{}}}}},"f:dnsPolicy":{},"f:restartPolicy":{},"f:schedulerName":{},"f:securityContext":{},"f:terminationGracePeriodSeconds":{},"f:volumes":{".":{},"k:{\"name\":\"fiap-mba-db-data\"}":{".":{},"f:name":{},"f:persistentVolumeClaim":{".":{},"f:claimName":{}}}}}},"f:triggers":{}}},"manager":"openshift-controller-manager","operation":"Update","time":"2022-01-12T00:07:24Z"},{"apiVersion":"apps.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:status":{"f:conditions":{".":{},"k:{\"type\":\"Available\"}":{".":{},"f:lastTransitionTime":{},"f:lastUpdateTime":{},"f:message":{},"f:status":{},"f:type":{}}},"f:observedGeneration":{}}},"manager":"openshift-controller-manager","operation":"Update","subresource":"status","time":"2022-01-12T00:07:24Z"}],"name":"fiap-mba-db","namespace":"wmirandamba-dev","resourceVersion":"530148799","uid":"ef7e4cf1-0aa1-4c85-bb8c-072d1bbaa66f"},"spec":{"replicas":1,"revisionHistoryLimit":10,"selector":{"name":"fiap-mba-db"},"strategy":{"activeDeadlineSeconds":21600,"recreateParams":{"timeoutSeconds":600},"resources":{},"type":"Recreate"},"template":{"metadata":{"creationTimestamp":null,"labels":{"name":"fiap-mba-db"}},"spec":{"containers":[{"env":[{"name":"MONGODB_USER","valueFrom":{"secretKeyRef":{"key":"database-user","name":"fiap-mba-db"}}},{"name":"MONGODB_PASSWORD","valueFrom":{"secretKeyRef":{"key":"database-password","name":"fiap-mba-db"}}},{"name":"MONGODB_ADMIN_PASSWORD","valueFrom":{"secretKeyRef":{"key":"database-admin-password","name":"fiap-mba-db"}}},{"name":"MONGODB_DATABASE","valueFrom":{"secretKeyRef":{"key":"database-name","name":"fiap-mba-db"}}}],"image":"
+      ","imagePullPolicy":"IfNotPresent","livenessProbe":{"failureThreshold":3,"initialDelaySeconds":30,"periodSeconds":10,"successThreshold":1,"tcpSocket":{"port":27017},"timeoutSeconds":1},"name":"mongodb","ports":[{"containerPort":27017,"protocol":"TCP"}],"readinessProbe":{"exec":{"command":["/bin/sh","-i","-c","mongo
+      127.0.0.1:27017/$MONGODB_DATABASE -u $MONGODB_USER -p $MONGODB_PASSWORD
+      --eval=\"quit()\""]},"failureThreshold":3,"initialDelaySeconds":3,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1},"resources":{"limits":{"memory":"512Mi"}},"securityContext":{"capabilities":{},"privileged":false},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/var/lib/mongodb/data","name":"fiap-mba-db-data"}]}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30,"volumes":[{"name":"fiap-mba-db-data","persistentVolumeClaim":{"claimName":"fiap-mba-db"}}]}},"test":false,"triggers":[{"imageChangeParams":{"automatic":true,"containerNames":["mongodb"],"from":{"kind":"ImageStreamTag","name":"mongodb:3.6","namespace":"fiap"}},"type":"ImageChange"},{"type":"ConfigChange"}]},"status":{"availableReplicas":0,"conditions":[{"lastTransitionTime":"2022-01-12T00:07:24Z","lastUpdateTime":"2022-01-12T00:07:24Z","message":"Deployment
+      config does not have minimum
+      availability.","status":"False","type":"Available"}],"latestVersion":0,"observedGeneration":1,"replicas":0,"unavailableReplicas":0,"updatedReplicas":0}}
     template.alpha.openshift.io/wait-for-ready: 'true'
-  resourceVersion: '530148799'
+  resourceVersion: '537707156'
   name: fiap-mba-db
-  uid: ef7e4cf1-0aa1-4c85-bb8c-072d1bbaa66f
-  creationTimestamp: '2022-01-12T00:07:24Z'
+  uid: 770cecbd-347d-4351-a1f5-4b177cb74055
+  creationTimestamp: '2022-01-13T00:07:07Z'
   generation: 1
   managedFields:
-    - manager: openshift-controller-manager
+    - manager: kubectl-client-side-apply
       operation: Update
       apiVersion: apps.openshift.io/v1
-      time: '2022-01-12T00:07:24Z'
+      time: '2022-01-13T00:07:07Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
           'f:annotations':
             .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
             'f:template.alpha.openshift.io/wait-for-ready': {}
           'f:labels':
             .: {}
@@ -25,6 +33,7 @@ metadata:
             'f:template.openshift.io/template-instance-owner': {}
         'f:spec':
           'f:replicas': {}
+          'f:revisionHistoryLimit': {}
           'f:selector':
             .: {}
             'f:name': {}
@@ -137,7 +146,7 @@ metadata:
     - manager: openshift-controller-manager
       operation: Update
       apiVersion: apps.openshift.io/v1
-      time: '2022-01-12T00:07:24Z'
+      time: '2022-01-13T00:07:07Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:status':
@@ -152,8 +161,18 @@ metadata:
               'f:type': {}
           'f:observedGeneration': {}
       subresource: status
+    - manager: Mozilla
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2022-01-14T00:04:21Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            'f:app': {}
   namespace: wmirandamba-dev
   labels:
+    app: fiap-mba-db
     template: mongodb-persistent-template
     template.openshift.io/template-instance-owner: 55871031-0a0d-4179-8afe-3e777353b10f
 spec:
@@ -265,6 +284,6 @@ status:
   conditions:
     - type: Available
       status: 'False'
-      lastUpdateTime: '2022-01-12T00:07:24Z'
-      lastTransitionTime: '2022-01-12T00:07:24Z'
+      lastUpdateTime: '2022-01-13T00:07:07Z'
+      lastTransitionTime: '2022-01-13T00:07:07Z'
       message: Deployment config does not have minimum availability.

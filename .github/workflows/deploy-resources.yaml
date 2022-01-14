@@ -29,16 +29,30 @@ jobs:
 
       - name: create database secrets
         run: |
-          oc get secret/fiap-mba-db 2> /dev/null && echo "database secrets already exists!" || oc create secret generic fiap-mba-db \
-          --from-literal=database-admin-password=$DATABASE_ADMIN_PASSWORD \
-          --from-literal=database-name=$DATABASE_NAME \
-          --from-literal=database-password=$DATABASE_PASSWORD \
-          --from-literal=database-user=$DATABASE_USER
+          oc create secret generic fiap-mba-db \
+            --from-literal=database-admin-password=$DATABASE_ADMIN_PASSWORD \
+            --from-literal=database-name=$DATABASE_NAME \
+            --from-literal=database-password=$DATABASE_PASSWORD \
+            --from-literal=database-user=$DATABASE_USER
 
       - name: deploy database
-        run: oc get svc/fiap-mba-db 2> /dev/null && echo "database already exists!" || oc apply -k resources/database
+        run: oc apply -k resources/database
+
+      - name: deploy image-stream and latest tag
+        run: oc apply -f resources/image-stream/image-stream.yaml
+
+      - name: install app dependencies
+        run: cd app && npm i && cd ..
+
+      - name: build app
+        run: docker build -t default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/wmirandamba-dev/fiap-mba-app:latest app/
+
+      - name: push app image
+        run: |
+          docker login -u `oc whoami` -p `oc whoami --show-token` default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com && \
+          docker push default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/wmirandamba-dev/fiap-mba-app
 
       - name: deploy application
-        run: oc get svc/fiap-mba-app 2> /dev/null && echo "application already exists!" || oc apply -k resources/application
+        run: oc apply -k resources/application
 
       

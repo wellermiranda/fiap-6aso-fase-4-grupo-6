@@ -1,26 +1,24 @@
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: fiap-6aso-grupo-6
+  name: fiap-mba-app
   namespace: wmirandamba-dev
-  uid: a54f8a53-e145-4343-8abe-bfa2884413fd
-  resourceVersion: '533624764'
-  creationTimestamp: '2022-01-12T21:56:58Z'
+  uid: 27a75ed6-f0f8-4fcc-8dd8-32d040f7ad0d
+  resourceVersion: '537619545'
+  creationTimestamp: '2022-01-13T23:30:33Z'
   labels:
-    app: fiap-6aso-grupo-6
-    app.kubernetes.io/component: fiap-6aso-grupo-6
-    app.kubernetes.io/instance: fiap-6aso-grupo-6
-    app.kubernetes.io/name: fiap-6aso-grupo-6
+    app: fiap-mba-app
+    app.kubernetes.io/component: fiap-mba-app
+    app.kubernetes.io/instance: fiap-mba-app
+    app.kubernetes.io/name: fiap-mba-app
     app.kubernetes.io/part-of: fiap-mba-app
-    app.openshift.io/runtime: nodejs
-    app.openshift.io/runtime-version: 14-ubi8
   annotations:
     openshift.io/host.generated: 'true'
   managedFields:
     - manager: Mozilla
       operation: Update
       apiVersion: route.openshift.io/v1
-      time: '2022-01-12T21:56:58Z'
+      time: '2022-01-13T23:30:33Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
@@ -31,8 +29,6 @@ metadata:
             'f:app.kubernetes.io/instance': {}
             'f:app.kubernetes.io/name': {}
             'f:app.kubernetes.io/part-of': {}
-            'f:app.openshift.io/runtime': {}
-            'f:app.openshift.io/runtime-version': {}
         'f:spec':
           'f:port':
             .: {}
@@ -45,29 +41,28 @@ metadata:
     - manager: openshift-router
       operation: Update
       apiVersion: route.openshift.io/v1
-      time: '2022-01-12T21:56:58Z'
+      time: '2022-01-13T23:30:33Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:status':
           'f:ingress': {}
       subresource: status
 spec:
-  host: fiap-6aso-grupo-6-wmirandamba-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com
+  host: fiap-mba-app-wmirandamba-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com
   to:
     kind: Service
-    name: fiap-6aso-grupo-6
+    name: fiap-mba-app
     weight: 100
   port:
     targetPort: 3000-tcp
   wildcardPolicy: None
 status:
   ingress:
-    - host: >-
-        fiap-6aso-grupo-6-wmirandamba-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com
+    - host: fiap-mba-app-wmirandamba-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com
       routerName: default
       conditions:
         - type: Admitted
           status: 'True'
-          lastTransitionTime: '2022-01-12T21:56:58Z'
+          lastTransitionTime: '2022-01-13T23:30:33Z'
       wildcardPolicy: None
       routerCanonicalHostname: router-default.apps.sandbox-m2.ll9k.p1.openshiftapps.com

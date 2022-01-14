@@ -30,4 +30,4 @@ jobs:
         run: oc project wmirandamba-dev
 
       - name: create database secrets
-        run:  oc new-build --name myapp --context-dir app 
+        run:  oc new-build --name fiap-mba-app-${GITHUB_SHA} --context-dir app --image-stream="openshift/nodejs:14-ubi8" https://github.com/wellermiranda/fiap-6aso-fase-4-grupo-6.git

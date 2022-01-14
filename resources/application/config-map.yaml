@@ -1,6 +1,6 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: students
+  name: application-config
 data:
-  rms: "rm340703 | rm340885"
+  students: "rm340703 | rm340885"

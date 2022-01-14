@@ -1,81 +1,86 @@
-kind: Deployment
-apiVersion: apps/v1
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
 metadata:
   annotations:
-    alpha.image.policy.openshift.io/resolve-names: '*'
-    app.openshift.io/vcs-ref: ''
-    app.openshift.io/vcs-uri: 'https://github.com/wellermiranda/fiap-6aso-fase-4-grupo-6'
-    deployment.kubernetes.io/revision: '3'
-    image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"fiap-6aso-grupo-6:latest","namespace":"wmirandamba-dev"},"fieldPath":"spec.template.spec.containers[?(@.name==\"fiap-6aso-grupo-6\")].image","pause":"false"}]
     openshift.io/generated-by: OpenShiftWebConsole
-  resourceVersion: '533641347'
-  name: fiap-6aso-grupo-6
-  uid: 1f081e23-7fb6-4c88-8dfc-74d0bbdebc4c
-  creationTimestamp: '2022-01-12T21:56:58Z'
-  generation: 3
+  resourceVersion: '537694727'
+  name: fiap-mba-app
+  uid: 22d4c0d4-beff-49db-9073-427199a7a6c4
+  creationTimestamp: '2022-01-13T23:56:42Z'
+  generation: 4
   managedFields:
     - manager: openshift-controller-manager
       operation: Update
-      apiVersion: apps/v1
-      time: '2022-01-12T21:57:47Z'
+      apiVersion: apps.openshift.io/v1
+      time: '2022-01-13T23:56:43Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:spec':
           'f:template':
             'f:spec':
               'f:containers':
-                'k:{"name":"fiap-6aso-grupo-6"}':
+                'k:{"name":"fiap-mba-app"}':
                   'f:image': {}
+          'f:triggers': {}
     - manager: Mozilla
       operation: Update
-      apiVersion: apps/v1
-      time: '2022-01-12T22:03:04Z'
+      apiVersion: apps.openshift.io/v1
+      time: '2022-01-13T23:59:42Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
           'f:annotations':
             .: {}
-            'f:alpha.image.policy.openshift.io/resolve-names': {}
-            'f:app.openshift.io/vcs-ref': {}
-            'f:app.openshift.io/vcs-uri': {}
-            'f:image.openshift.io/triggers': {}
             'f:openshift.io/generated-by': {}
           'f:labels':
+            'f:app.openshift.io/runtime': {}
+            'f:app': {}
+            'f:app.kubernetes.io/name': {}
+            .: {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime-version': {}
+            'f:app.openshift.io/runtime-namespace': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/component': {}
+        'f:spec':
+          'f:replicas': {}
+          'f:selector':
             .: {}
             'f:app': {}
-            'f:app.kubernetes.io/component': {}
-            'f:app.kubernetes.io/instance': {}
-            'f:app.kubernetes.io/name': {}
-            'f:app.kubernetes.io/part-of': {}
-            'f:app.openshift.io/runtime': {}
-            'f:app.openshift.io/runtime-version': {}
-        'f:spec':
-          'f:progressDeadlineSeconds': {}
-          'f:replicas': {}
-          'f:revisionHistoryLimit': {}
-          'f:selector': {}
+            'f:deploymentconfig': {}
           'f:strategy':
-            'f:rollingUpdate':
+            'f:activeDeadlineSeconds': {}
+            'f:rollingParams':
               .: {}
+              'f:intervalSeconds': {}
               'f:maxSurge': {}
               'f:maxUnavailable': {}
+              'f:timeoutSeconds': {}
+              'f:updatePeriodSeconds': {}
             'f:type': {}
           'f:template':
+            .: {}
             'f:metadata':
+              .: {}
+              'f:annotations':
+                .: {}
+                'f:openshift.io/generated-by': {}
+              'f:creationTimestamp': {}
               'f:labels':
                 .: {}
                 'f:app': {}
                 'f:deploymentconfig': {}
             'f:spec':
+              .: {}
               'f:containers':
-                'k:{"name":"fiap-6aso-grupo-6"}':
+                .: {}
+                'k:{"name":"fiap-mba-app"}':
                   .: {}
                   'f:imagePullPolicy': {}
                   'f:name': {}
                   'f:ports':
                     .: {}
-                    'k:{"containerPort":8080,"protocol":"TCP"}':
+                    'k:{"containerPort":3000,"protocol":"TCP"}':
                       .: {}
                       'f:containerPort': {}
                       'f:protocol': {}
@@ -92,17 +97,15 @@ metadata:
               'f:schedulerName': {}
               'f:securityContext': {}
               'f:terminationGracePeriodSeconds': {}
-    - manager: kube-controller-manager
+    - manager: openshift-controller-manager
       operation: Update
-      apiVersion: apps/v1
-      time: '2022-01-12T22:03:08Z'
+      apiVersion: apps.openshift.io/v1
+      time: '2022-01-13T23:59:42Z'
       fieldsType: FieldsV1
       fieldsV1:
-        'f:metadata':
-          'f:annotations':
-            'f:deployment.kubernetes.io/revision': {}
         'f:status':
-          'f:availableReplicas': {}
+          'f:updatedReplicas': {}
+          'f:readyReplicas': {}
           'f:conditions':
             .: {}
             'k:{"type":"Available"}':
@@ -110,7 +113,6 @@ metadata:
               'f:lastTransitionTime': {}
               'f:lastUpdateTime': {}
               'f:message': {}
-              'f:reason': {}
               'f:status': {}
               'f:type': {}
             'k:{"type":"Progressing"}':
@@ -118,49 +120,81 @@ metadata:
               'f:lastTransitionTime': {}
               'f:lastUpdateTime': {}
               'f:message': {}
-              'f:reason': {}
               'f:status': {}
               'f:type': {}
-          'f:observedGeneration': {}
-          'f:readyReplicas': {}
+          'f:details':
+            .: {}
+            'f:causes': {}
+            'f:message': {}
           'f:replicas': {}
-          'f:updatedReplicas': {}
+          'f:availableReplicas': {}
+          'f:observedGeneration': {}
+          'f:unavailableReplicas': {}
+          'f:latestVersion': {}
       subresource: status
   namespace: wmirandamba-dev
   labels:
-    app: fiap-6aso-grupo-6
-    app.kubernetes.io/component: fiap-6aso-grupo-6
-    app.kubernetes.io/instance: fiap-6aso-grupo-6
-    app.kubernetes.io/name: fiap-6aso-grupo-6
+    app: fiap-mba-app
+    app.kubernetes.io/component: fiap-mba-app
+    app.kubernetes.io/instance: fiap-mba-app
+    app.kubernetes.io/name: fiap-mba-app
     app.kubernetes.io/part-of: fiap-mba-app
-    app.openshift.io/runtime: nodejs
-    app.openshift.io/runtime-version: 14-ubi8
+    app.openshift.io/runtime: fiap-mba-app
+    app.openshift.io/runtime-namespace: wmirandamba-dev
+    app.openshift.io/runtime-version: latest
 spec:
+  strategy:
+    type: Rolling
+    rollingParams:
+      updatePeriodSeconds: 1
+      intervalSeconds: 1
+      timeoutSeconds: 600
+      maxUnavailable: 25%
+      maxSurge: 25%
+    resources: {}
+    activeDeadlineSeconds: 21600
+  triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - fiap-mba-app
+        from:
+          kind: ImageStreamTag
+          namespace: wmirandamba-dev
+          name: 'fiap-mba-app:latest'
+        lastTriggeredImage: >-
+          image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-mba-app@sha256:dc82591dd281dca65764ec6db2cd31b0f8c6c70870ff006bd597dc8053be47b7
+    - type: ConfigChange
   replicas: 1
+  revisionHistoryLimit: 10
+  test: false
   selector:
-    matchLabels:
-      app: fiap-6aso-grupo-6
+    app: fiap-mba-app
+    deploymentconfig: fiap-mba-app
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: fiap-6aso-grupo-6
-        deploymentconfig: fiap-6aso-grupo-6
+        app: fiap-mba-app
+        deploymentconfig: fiap-mba-app
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
     spec:
       containers:
-        - name: fiap-6aso-grupo-6
+        - name: fiap-mba-app
           image: >-
-            image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-6aso-grupo-6@sha256:ed2a350c8dc2cdfaf9e83eb114360800199238ad74c9fcb7ef36eb2321628dfc
+            image-registry.openshift-image-registry.svc:5000/wmirandamba-dev/fiap-mba-app@sha256:dc82591dd281dca65764ec6db2cd31b0f8c6c70870ff006bd597dc8053be47b7
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
               protocol: TCP
           resources:
             limits:
               cpu: '1'
-              memory: 256Mi
+              memory: 128Mi
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: STUDENTS
               valueFrom:
@@ -187,31 +221,28 @@ spec:
       dnsPolicy: ClusterFirst
       securityContext: {}
       schedulerName: default-scheduler
-      imagePullSecrets: []
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-  revisionHistoryLimit: 10
-  progressDeadlineSeconds: 600
-  paused: false
 status:
-  observedGeneration: 3
-  replicas: 1
-  updatedReplicas: 1
-  readyReplicas: 1
+  observedGeneration: 4
+  details:
+    message: config change
+    causes:
+      - type: ConfigChange
   availableReplicas: 1
+  unavailableReplicas: 0
+  latestVersion: 3
+  updatedReplicas: 0
   conditions:
     - type: Available
       status: 'True'
-      lastUpdateTime: '2022-01-12T21:57:51Z'
-      lastTransitionTime: '2022-01-12T21:57:51Z'
-      reason: MinimumReplicasAvailable
-      message: Deployment has minimum availability.
+      lastUpdateTime: '2022-01-13T23:56:48Z'
+      lastTransitionTime: '2022-01-13T23:56:48Z'
+      message: Deployment config has minimum availability.
     - type: Progressing
-      status: 'True'
-      lastUpdateTime: '2022-01-12T22:03:08Z'
-      lastTransitionTime: '2022-01-12T21:56:58Z'
-      reason: NewReplicaSetAvailable
-      message: ReplicaSet "fiap-6aso-grupo-6-5897488b88" has successfully progressed.
+      status: Unknown
+      lastUpdateTime: '2022-01-13T23:59:42Z'
+      lastTransitionTime: '2022-01-13T23:59:42Z'
+      message: >-
+        replication controller "fiap-mba-app-3" is waiting for pod
+        "fiap-mba-app-3-deploy" to run
+  replicas: 1
+  readyReplicas: 1
